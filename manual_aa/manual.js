@@ -294,6 +294,11 @@ function on_paint()
     if(!menu.get(enabled))
         return;
 
+    const me = entity.get_local_player()
+
+    if (!me || !entity.is_alive(me))
+        return;
+
     bind_system.update();
 
     if(!menu.get(indicators))
