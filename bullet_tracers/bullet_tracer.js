@@ -66,14 +66,12 @@ function draw_handler() {
         return;
 
     for (var i in queue) {
-        if (Globals.Curtime() <= queue[i][6]) {
-            var pos_2d = Render.WorldToScreen([queue[i][0], queue[i][1], queue[i][2]]);
-            var e_pos_2d = Render.WorldToScreen([queue[i][3], queue[i][4], queue[i][5]]);
+        var pos_2d = Render.WorldToScreen([queue[i][0], queue[i][1], queue[i][2]]);
+        var e_pos_2d = Render.WorldToScreen([queue[i][3], queue[i][4], queue[i][5]]);
 
-            if (pos_2d[0] != null && pos_2d[1] != null && e_pos_2d[0] != null && e_pos_2d[1] != null) {
-                const bt_color = UI.GetColor("Misc", "JAVASCRIPT", "Script items", "Bullet tracer color")
-                Render.Line(pos_2d[0], pos_2d[1], e_pos_2d[0], e_pos_2d[1], bt_color);
-            }
+        if (e_pos_2d[2] === 1 && pos_2d[2] === 1 && (Globals.Curtime() <= queue[i][6])) {
+            const bt_color = UI.GetColor("Misc", "JAVASCRIPT", "Script items", "Bullet tracer color")
+            Render.Line(pos_2d[0], pos_2d[1], e_pos_2d[0], e_pos_2d[1], bt_color);
         }
     }
 }
