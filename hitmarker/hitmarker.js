@@ -35,7 +35,7 @@ var queue = [];
 const enabled = UI.AddCheckbox("Custom hitmarkers");
 const size = UI.AddSliderInt("Hitmarker size", 1, 14);
 const color = UI.AddColorPicker("Hitmarker color");
-const duration = UI.AddCheckbox("Hitmarker duration", 1, 8);
+const duration = UI.AddSliderInt("Hitmarker duration", 1, 8);
 const hit = UI.AddCheckbox("Hitmarker on hit only");
 
 //menu handle
