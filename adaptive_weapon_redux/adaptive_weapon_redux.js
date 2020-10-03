@@ -52,6 +52,8 @@ const Paths = {
 
 var ActiveSelection;
 var ActiveWeaponGroup;
+
+var Exceptions = [ "knife", "zeus x27", "high explosive grenade", "smoke grenade", "flashbang", "decoy grenade", "molotov", "c4", "incendiary" ];
 //endregion
 
 //region interface
@@ -136,6 +138,16 @@ function GetPlayerWeaponGroup()
 
 function SetGeneralConfig()
 {
+    const me = Entity.GetLocalPlayer(); 
+    const wpn = Entity.GetWeapon(me);
+    const wpnName = Entity.GetName(wpn);
+
+    for (var i in Exceptions)
+    {
+        if (Exceptions[i] == wpnName)
+            return;
+    }
+
     if (UI.GetValue(["Rage", "Adaptive weapons", "Adaptive weapons", "[" + ActiveWeaponGroup + "] Enabled"]) == 0)
         ActiveWeaponGroup = "Other";
 
