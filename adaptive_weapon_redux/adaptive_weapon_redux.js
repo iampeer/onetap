@@ -19,7 +19,7 @@ const WeaponGroups = {
     "Heavy pistols":    [ "desert eagle", "r8 revolver" ],
     "Pistols":          [ "usp s", "tec 9", "glock 18", "cz75 auto", "five seven", "p250", "p2000", "dual berettas" ],
     "AWP":              [ "awp" ],
-    "Scout":            [ "sgg 08" ],
+    "Scout":            [ "ssg 08" ],
     "Rifles":           [ "galil ar", "ak 47", "m4a4", "m4a1 s", "sg 553", "famas", "aug" ],
     "Shotguns":         [ "nova", "xm1014", "sawed off", "mag 7" ],
     "SMGs":             [ "mac 10", "mp9", "mp7", "ump 45", "pp bizon", "p90" ],
@@ -183,7 +183,6 @@ function DrawHandler()
         return;
 
     const Size = Render.GetScreenSize();
-
 
     if (UI.GetValue(["Rage", "Adaptive weapons", "Adaptive weapons", "[" + ActiveWeaponGroup + "] Enabled"]) != 0)
     {
