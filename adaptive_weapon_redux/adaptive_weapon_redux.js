@@ -52,6 +52,7 @@ const Paths = {
 
 var ActiveSelection;
 var ActiveWeaponGroup;
+var font;
 
 var Exceptions = [ "knife", "zeus x27", "high explosive grenade", "smoke grenade", "flashbang", "decoy grenade", "molotov", "c4", "incendiary" ];
 //endregion
@@ -90,7 +91,7 @@ function SetupUI()
     UI.AddSubTab(["Rage", "SUBTAB_MGR"], "Adaptive weapons");
 
     const keys = GetObjectKeys(WeaponGroups);
-    UI.AddHotkey(["Config", "Scripts", "JS Keybinds"], "Damage override key", "dmg_or");
+    UI.AddHotkey(["Config", "Scripts", "JS Keybinds"], "Damage override key", "Damage override");
     UI.AddDropdown(["Rage", "Adaptive weapons", "Adaptive weapons"], "Weapon groups", keys, 1);
 
     for (var i in keys)
@@ -174,6 +175,9 @@ function SetGeneralConfig()
 
 function DrawHandler()
 {
+    if (font == null)
+        font = Render.AddFont("Arial.ttf", 12, 800)
+
     if (UI.GetValue(["Rage", "Adaptive weapons", "Adaptive weapons", "Weapon groups"]) != ActiveSelection) 
         HandleVisibility();
 
@@ -188,7 +192,7 @@ function DrawHandler()
     {
         if (UI.GetValue(["Config", "Scripts", "JS Keybinds", "Damage override key"]) == 1)
         {
-            Render.String(Size[0]/2 + 20, Size[1]/2 + 5, 1, "DMG", [255, 255, 255, 255], 4);
+            Render.String(Size[0]/2 + 20, Size[1]/2 + 5, 1, "DMG", [255, 255, 255, 255], font);
         }
     }   
 }
