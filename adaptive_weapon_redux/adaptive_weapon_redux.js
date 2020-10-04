@@ -83,6 +83,8 @@ function HandleMenu()
         UI.SetEnabled([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + WeaponGroupName + "] Prefer safe point"], i == ActiveSelectionBit ? 1 : 0);
         UI.SetEnabled([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + WeaponGroupName + "] Prefer body aim"], i == ActiveSelectionBit ? 1 : 0);
 
+        UI.SetEnabled([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + WeaponGroupName + "] Force safe point on limbs"], i == ActiveSelectionBit ? 1 : 0);
+
         UI.SetEnabled([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + WeaponGroupName + "] Hitchance in air"], i == ActiveSelectionBit ? 1 : 0);
         UI.SetEnabled([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + WeaponGroupName + "] Hitchance in air value"], i == ActiveSelectionBit ? 1 : 0);
     }
@@ -118,6 +120,8 @@ function SetupMenu()
         UI.AddCheckbox(AdaptivePath,        "[" + WeaponGroupName + "] Prefer safe point");
         UI.AddCheckbox(AdaptivePath,        "[" + WeaponGroupName + "] Prefer body aim");
 
+        UI.AddCheckbox(AdaptivePath,        "[" + WeaponGroupName + "] Force safe point on limbs");
+
         UI.AddCheckbox(AdaptivePath,        "[" + WeaponGroupName + "] Hitchance in air");
         UI.AddSliderInt(AdaptivePath,       "[" + WeaponGroupName + "] Hitchance in air value", 0, 100);
     }
@@ -138,6 +142,12 @@ function GetWeaponGroup(wpn)
                 return i;
     
     return "Global";
+}
+
+function SafepointHitboxes(hb)
+{
+    for (var i in hb)
+        Ragebot.ForceHitboxSafety(hb[i]);
 }
 
 function SetConfig()
@@ -167,6 +177,9 @@ function SetConfig()
     UI.SetValue(RagePaths.Stopmode, UI.GetValue([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + ActiveWeaponGroup + "] Auto stop mode"]));
     UI.SetValue(RagePaths.Prefersafe, UI.GetValue([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + ActiveWeaponGroup + "] Prefer safe point"]));
     UI.SetValue(RagePaths.Preferbaim, UI.GetValue([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + ActiveWeaponGroup + "] Prefer body aim"]));
+
+    if (UI.GetValue([AdaptivePath[0], AdaptivePath[1], AdaptivePath[2], "[" + ActiveWeaponGroup + "] Force safe point on limbs"]))
+        SafepointHitboxes([7, 8, 9, 10, 11, 12]);
 }
 //endregion
 
