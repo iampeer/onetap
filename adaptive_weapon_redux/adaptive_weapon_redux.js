@@ -213,11 +213,11 @@ function CommandHandler()
 
     ActiveWeaponGroup = GetWeaponGroup(Entity.GetName(wpn));
 
-    if (ActiveWeaponGroup != CachedWeaponGroup)
-    {
+    // if (ActiveWeaponGroup != CachedWeaponGroup)
+    // {
         SetConfig();
-        CachedWeaponGroup = ActiveWeaponGroup;
-    }
+        //CachedWeaponGroup = ActiveWeaponGroup;
+    //}
 }
 
 function Initialize()
